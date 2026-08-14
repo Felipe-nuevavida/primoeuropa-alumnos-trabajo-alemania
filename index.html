@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Organiza tu primer mes en Alemania: dirección, registro, seguro médico, cuenta y los trámites que necesitas para empezar a estudiar, formarte o trabajar." />
+    <meta name="theme-color" content="#0b172a" />
+    <title>Tu primer mes en Alemania, en orden | Primo Europa</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="page-glow glow-one"></div>
+    <div class="page-glow glow-two"></div>
+
+    <header class="site-header container">
+      <a class="brand" href="#inicio" aria-label="Primo Europa, inicio">
+        <span class="brand-mark">P</span>
+        <span>PRIMO <strong>EUROPA</strong></span>
+      </a>
+      <a class="header-link" href="#tu-ruta">Empezar mi ruta <span aria-hidden="true">↓</span></a>
+    </header>
+
+    <main id="inicio">
+      <section class="hero container">
+        <div class="hero-copy">
+          <p class="eyebrow"><span class="eyebrow-dot"></span> ALUMNOS Y PROFESIONALES · ALEMANIA</p>
+          <h1>Tu primer mes<br />en Alemania,<br /><em>en orden.</em></h1>
+          <p class="hero-lead">Si vienes por estudios, formación o trabajo, no deberías descubrir los trámites importantes cuando ya estás agotado. Aquí conviertes el caos de llegada en una ruta clara.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#tu-ruta">Organizar mi llegada <span aria-hidden="true">→</span></a>
+            <a class="button button-text" href="#como-funciona">Cómo funciona <span aria-hidden="true">↓</span></a>
+          </div>
+          <div class="hero-trust">
+            <span class="trust-check">✓</span>
+            <p>Hecho para personas que llegan a Alemania<br />con una fecha real de salida.</p>
+          </div>
+        </div>
+
+        <div class="hero-visual" aria-label="Vista previa de la ruta de llegada">
+          <div class="orbit orbit-one"></div>
+          <div class="orbit orbit-two"></div>
+          <div class="arrival-card">
+            <div class="arrival-card-top"><span>PRIMER MES</span><span>01 / 30</span></div>
+            <div class="arrival-title">Tu llegada,<br /><strong>sin improvisar.</strong></div>
+            <div class="arrival-route"><span class="route-dot active"></span><span class="route-line"></span><span class="route-dot"></span><span class="route-line"></span><span class="route-dot"></span><span class="route-line"></span><span class="route-dot"></span></div>
+            <div class="arrival-labels"><span>Dirección</span><span>Seguro</span><span>Cuenta</span><span>Rutina</span></div>
+          </div>
+          <div class="floating-card floating-card-one"><span class="floating-icon house-icon">⌂</span><div><small>TRÁMITE 01</small><strong>Registro de domicilio</strong></div></div>
+          <div class="floating-card floating-card-two"><span class="floating-icon shield-icon">✦</span><div><small>TRÁMITE 02</small><strong>Seguro confirmado</strong></div></div>
+        </div>
+      </section>
+
+      <section class="partner-note container" id="partner-note" hidden>
+        <span class="partner-note-icon">↗</span>
+        <p>Has llegado desde una organización que acompaña tu salida a Alemania. Esta ruta está pensada para ayudarte con lo que ocurre después: instalarte bien.</p>
+      </section>
+
+      <section class="problem-section container" id="como-funciona">
+        <div class="section-intro">
+          <p class="section-kicker">EL PROBLEMA NO ES TU CAPACIDAD</p>
+          <h2>Es intentar resolverlo todo<br /><em>en el orden equivocado.</em></h2>
+        </div>
+        <div class="problem-grid">
+          <article class="problem-card problem-card-dark"><span class="problem-number">01</span><h3>Sin una dirección registrable, muchos trámites se bloquean.</h3><p>La vivienda no es solo dónde dormir: puede ser la puerta al registro, a la nómina y a tu vida diaria.</p></article>
+          <article class="problem-card"><span class="problem-number">02</span><h3>El seguro médico no es un detalle que puedas dejar para después.</h3><p>Necesitas saber qué cobertura tienes desde tu llegada y qué debe confirmar tu empleador.</p></article>
+          <article class="problem-card problem-card-accent"><span class="problem-number">03</span><h3>Una cuenta no es un trámite aislado: es cómo cobras y pagas.</h3><p>Cuando vas a empezar a trabajar, tener el proceso claro evita retrasos innecesarios.</p></article>
+        </div>
+      </section>
+
+      <section class="route-section" id="tu-ruta">
+        <div class="container route-layout">
+          <div class="route-copy">
+            <p class="section-kicker">TU PUNTO DE PARTIDA</p>
+            <h2>Elige lo que más te preocupa <em>hoy.</em></h2>
+            <p>No necesitas tener todo resuelto para empezar. Elige tu situación y te mostramos el orden lógico de los siguientes pasos.</p>
+            <div class="route-progress"><span class="route-progress-label">Tu ruta</span><span class="route-progress-line"><i id="progress-bar"></i></span><span id="progress-count">0/3</span></div>
+          </div>
+          <div class="route-choices" id="route-choices">
+            <button class="choice-card" type="button" data-route="address">
+              <span class="choice-index">01</span>
+              <span class="choice-icon">⌂</span>
+              <span class="choice-copy"><strong>Necesito una dirección donde pueda registrarme.</strong><small>Vivienda, empadronamiento y primer paso real.</small></span>
+              <span class="choice-arrow">→</span>
+            </button>
+            <button class="choice-card" type="button" data-route="health">
+              <span class="choice-index">02</span>
+              <span class="choice-icon">✦</span>
+              <span class="choice-copy"><strong>Quiero confirmar mi seguro médico.</strong><small>Cobertura, empleador y lo que debes comprobar.</small></span>
+              <span class="choice-arrow">→</span>
+            </button>
+            <button class="choice-card" type="button" data-route="bank">
+              <span class="choice-index">03</span>
+              <span class="choice-icon">€</span>
+              <span class="choice-copy"><strong>Necesito una cuenta para cobrar mi nómina.</strong><small>Qué necesitas preparar antes de solicitarla.</small></span>
+              <span class="choice-arrow">→</span>
+            </button>
+          </div>
+          <div class="route-result" id="route-result" aria-live="polite">
+            <p class="result-pretitle">TU SIGUIENTE PASO</p>
+            <h3>Elige una situación para ver tu ruta.</h3>
+            <p>Empezaremos por lo urgente y seguiremos con lo que desbloquea el siguiente trámite.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="checklist-section container">
+        <div class="checklist-header"><div><p class="section-kicker">EL MÉTODO</p><h2>Un primer mes que<br /><em>sí puedes controlar.</em></h2></div><p>La guía no pretende sustituir a tu escuela, empleador o asesoría. Está para que llegues mejor preparado y sepas qué preguntar.</p></div>
+        <div class="timeline">
+          <article class="timeline-item"><span class="timeline-date">ANTES DE VOLAR</span><div class="timeline-line"></div><h3>Prepara lo que no se puede improvisar</h3><p>Documentos, alojamiento, contacto de llegada, contrato y cobertura inicial.</p></article>
+          <article class="timeline-item"><span class="timeline-date">DÍAS 1–7</span><div class="timeline-line"></div><h3>Consigue una base segura</h3><p>Dirección, cita de registro, comunicación y ruta real hasta tu centro de formación o trabajo.</p></article>
+          <article class="timeline-item"><span class="timeline-date">DÍAS 8–30</span><div class="timeline-line"></div><h3>Activa tu vida cotidiana</h3><p>Seguro, nómina, cuenta, documentación pendiente y red de apoyo local.</p></article>
+        </div>
+      </section>
+
+      <section class="resource-section">
+        <div class="container resource-card">
+          <div class="resource-stamp"><span>DE</span><small>PRIMER<br />MES</small></div>
+          <div class="resource-copy"><p class="section-kicker">RECURSO GRATUITO</p><h2>La checklist para no llegar a Alemania <em>a ciegas.</em></h2><p>Descubre el orden de los primeros trámites y las preguntas que conviene resolver antes de despegar.</p></div>
+          <a class="button button-light" href="https://www.primoeuropa.eu/como-conseguir-anmeldung-alemania/" target="_blank" rel="noopener" data-cta="checklist">Ver el primer paso <span aria-hidden="true">→</span></a>
+        </div>
+      </section>
+
+      <section class="truth-section container">
+        <p class="truth-label">SIN PROMESAS VACÍAS</p>
+        <blockquote>“No podemos hacer los trámites por ti. Pero sí podemos impedir que llegues sin saber cuál es el siguiente.”</blockquote>
+        <p class="truth-note">Los requisitos pueden variar por ciudad, visado, empleo y situación individual. Confirma siempre los detalles con tu empleador, las autoridades y los proveedores correspondientes.</p>
+      </section>
+    </main>
+
+    <footer class="site-footer container">
+      <a class="brand footer-brand" href="#inicio"><span class="brand-mark">P</span><span>PRIMO <strong>EUROPA</strong></span></a>
+      <p>Información práctica para hispanos que empiezan una vida en Europa.</p>
+      <a href="https://www.primoeuropa.eu/" target="_blank" rel="noopener">Visitar Primo Europa ↗</a>
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>
