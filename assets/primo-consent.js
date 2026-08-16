@@ -88,18 +88,25 @@
         var panel = getPanel();
         if (panel) {
             panel.hidden = false;
+            panel.style.display = 'grid';
             panel.querySelector('[data-consent-focus]') && panel.querySelector('[data-consent-focus]').focus();
         }
     }
 
     function closePanel() {
         var panel = getPanel();
-        if (panel) panel.hidden = true;
+        if (panel) {
+            panel.hidden = true;
+            panel.style.display = 'none';
+        }
     }
 
     function render() {
         var banner = getBanner();
-        if (banner) banner.hidden = Boolean(state);
+        if (banner) {
+            banner.hidden = Boolean(state);
+            banner.style.display = state ? 'none' : 'block';
+        }
         var analytics = document.querySelector('[data-consent-category="analytics"]');
         var affiliate = document.querySelector('[data-consent-category="affiliate"]');
         if (analytics) analytics.checked = has('analytics');
@@ -122,6 +129,7 @@
                 });
             }
         });
+        closePanel();
         render();
     }
 
