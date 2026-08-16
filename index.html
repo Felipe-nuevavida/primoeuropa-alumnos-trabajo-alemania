@@ -14,14 +14,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="styles.css" />
-    <!-- Google Analytics 4 — Primo Europa -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-M613Q4L4KL"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){ dataLayer.push(arguments); }
-      gtag('js', new Date());
-      gtag('config', 'G-M613Q4L4KL');
-    </script>
+    <link rel="stylesheet" href="assets/primo-consent.css" />
+    <script src="assets/primo-consent.js"></script>
   </head>
   <body>
     <div class="page-glow glow-one"></div>
@@ -108,6 +102,30 @@
       <a href="https://www.primoeuropa.eu/" target="_blank" rel="noopener">Visitar Primo Europa ↗</a>
     </footer>
 
+    <button class="primo-consent-trigger" type="button" data-consent-action="open-settings">Configurar cookies</button>
+    <section id="primo-consent-banner" role="dialog" aria-modal="false" aria-label="Preferencias de cookies" hidden>
+      <h2 class="primo-consent-title">Tu privacidad, tu elección</h2>
+      <p class="primo-consent-copy">Usamos cookies necesarias para el funcionamiento de la guía. Con tu permiso, también usamos analítica para mejorar los recursos de Primo Europa y tecnologías de afiliación para medir recomendaciones. <a href="https://www.primoeuropa.eu/politica-de-cookies/">Más información</a>.</p>
+      <div class="primo-consent-actions">
+        <button class="primo-consent-button primo-consent-button--primary" type="button" data-consent-action="accept-all">Aceptar todo</button>
+        <button class="primo-consent-button primo-consent-button--secondary" type="button" data-consent-action="reject-all">Rechazar opcionales</button>
+        <button class="primo-consent-button primo-consent-button--link" type="button" data-consent-action="open-settings">Configurar</button>
+      </div>
+    </section>
+    <section id="primo-consent-panel" role="dialog" aria-modal="true" aria-label="Configurar cookies" hidden>
+      <div class="primo-consent-dialog">
+        <h2 data-consent-focus tabindex="-1">Configurar cookies</h2>
+        <p>Las cookies necesarias permiten el funcionamiento básico. Las categorías opcionales permanecen desactivadas hasta que las aceptes.</p>
+        <label class="primo-consent-option"><input type="checkbox" checked disabled><span><strong>Necesarias</strong><span>Funcionamiento, seguridad y conservación de tu elección.</span></span></label>
+        <label class="primo-consent-option"><input type="checkbox" data-consent-category="analytics"><span><strong>Analítica</strong><span>Google Analytics 4 y atribución entre la guía y la web principal para medir visitas e interacciones.</span></span></label>
+        <label class="primo-consent-option"><input type="checkbox" data-consent-category="affiliate"><span><strong>Afiliación</strong><span>Tecnologías de proveedores externos para atribuir recomendaciones y posibles comisiones.</span></span></label>
+        <div class="primo-consent-actions">
+          <button class="primo-consent-button primo-consent-button--primary" type="button" data-consent-action="save-settings">Guardar selección</button>
+          <button class="primo-consent-button primo-consent-button--secondary" type="button" data-consent-action="reject-all">Rechazar opcionales</button>
+          <button class="primo-consent-button primo-consent-button--link" type="button" data-consent-action="close-settings">Cancelar</button>
+        </div>
+      </div>
+    </section>
     <script src="app.js"></script>
   </body>
 </html>

@@ -3,6 +3,7 @@ const partnerSource = params.get('utm_source') || params.get('ref');
 const partnerMedium = params.get('utm_medium') || 'direct';
 const campaign = params.get('utm_campaign') || 'organic_landing';
 const guideId = params.get('guide') || 'general';
+let analyticsVisitTracked = false;
 
 const guides = {
   general: {
@@ -34,7 +35,7 @@ function currentGuideId() {
 
 function persistLandingAttribution() {
   // Comparte solo metadatos de campaña entre subdominios de Primo Europa; no guarda datos personales.
-  if (!partnerSource) return;
+  if (!partnerSource || !window.PrimoConsent || !window.PrimoConsent.has('analytics')) return;
   const attribution = {
     landing: 'alumnos-trabajo-alemania',
     guide: currentGuideId(),
@@ -62,8 +63,8 @@ function emitEvent(name, details = {}) {
   window.dispatchEvent(new CustomEvent('primoLandingEvent', { detail: payload }));
   console.info('[Primo Europa landing event]', payload);
 
-  // Envía el mismo evento a GA4 cuando el tag ya está disponible.
-  if (typeof window.gtag === 'function') {
+  // Envía el mismo evento a GA4 únicamente mientras existe consentimiento analítico.
+  if (window.PrimoConsent && window.PrimoConsent.has('analytics') && typeof window.gtag === 'function') {
     const { event, ...eventParams } = payload;
     window.gtag('event', name, eventParams);
   }
@@ -91,7 +92,14 @@ function updatePartnerNotice() {
   const displayName = partnerSource.replace(/[-_]/g, ' ').replace(/\b\w/g, (letter) => letter.toUpperCase());
   notice.hidden = false;
   notice.querySelector('p').textContent = `Has llegado desde ${displayName}, una organización que acompaña tu salida a Alemania. Esta guía está pensada para ayudarte a ordenar el siguiente paso.`;
-  emitEvent('partner_landing_view');
+}
+
+function trackAnalyticsVisit() {
+  if (analyticsVisitTracked || !window.PrimoConsent || !window.PrimoConsent.has('analytics')) return;
+  persistLandingAttribution();
+  emitEvent('guide_landing_view');
+  if (partnerSource) emitEvent('partner_landing_view');
+  analyticsVisitTracked = true;
 }
 
 function initCtaTracking() {
@@ -113,7 +121,9 @@ function initCtaTracking() {
 }
 
 updateGuide();
-persistLandingAttribution();
 updatePartnerNotice();
 initCtaTracking();
-emitEvent('guide_landing_view');
+trackAnalyticsVisit();
+window.addEventListener('primoConsentChanged', (event) => {
+  if (event.detail && event.detail.analytics) trackAnalyticsVisit();
+});
