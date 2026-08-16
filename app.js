@@ -28,24 +28,35 @@ const guides = {
   },
 };
 
+function currentGuideId() {
+  return guideId in guides ? guideId : 'general';
+}
+
 function emitEvent(name, details = {}) {
   const payload = {
     event: name,
     partner_source: partnerSource || 'direct',
     partner_medium: partnerMedium,
     campaign,
-    guide: guideId in guides ? guideId : 'general',
+    guide: currentGuideId(),
     ...details,
   };
 
+  // Mantiene las integraciones locales existentes.
   window.dataLayer = window.dataLayer || [];
   window.dataLayer.push(payload);
   window.dispatchEvent(new CustomEvent('primoLandingEvent', { detail: payload }));
   console.info('[Primo Europa landing event]', payload);
+
+  // Envía el mismo evento a GA4 cuando el tag ya está disponible.
+  if (typeof window.gtag === 'function') {
+    const { event, ...eventParams } = payload;
+    window.gtag('event', name, eventParams);
+  }
 }
 
 function updateGuide() {
-  const guide = guides[guideId] || guides.general;
+  const guide = guides[currentGuideId()];
   const kicker = document.getElementById('guide-kicker');
   const title = document.getElementById('guide-title');
   const description = document.getElementById('guide-description');
@@ -71,10 +82,23 @@ function updatePartnerNotice() {
 
 function initCtaTracking() {
   document.querySelectorAll('[data-cta]').forEach((cta) => {
-    cta.addEventListener('click', () => emitEvent('partner_cta_click', { cta: cta.dataset.cta }));
+    cta.addEventListener('click', () => {
+      if (cta.id === 'guide-download') {
+        emitEvent('guide_download', {
+          cta: cta.dataset.cta || 'guide_download',
+          guide_file: new URL(cta.href, window.location.origin).pathname,
+        });
+        return;
+      }
+
+      emitEvent('partner_cta_click', {
+        cta: cta.dataset.cta || 'unknown',
+      });
+    });
   });
 }
 
 updateGuide();
 updatePartnerNotice();
 initCtaTracking();
+emitEvent('guide_landing_view');
