@@ -32,6 +32,20 @@ function currentGuideId() {
   return guideId in guides ? guideId : 'general';
 }
 
+function persistLandingAttribution() {
+  // Comparte solo metadatos de campaña entre subdominios de Primo Europa; no guarda datos personales.
+  if (!partnerSource) return;
+  const attribution = {
+    landing: 'alumnos-trabajo-alemania',
+    guide: currentGuideId(),
+    partner_source: partnerSource,
+    partner_medium: partnerMedium,
+    campaign,
+  };
+  const value = encodeURIComponent(JSON.stringify(attribution));
+  document.cookie = `primo_landing_attribution=${value}; Max-Age=2592000; Path=/; Domain=.primoeuropa.eu; SameSite=Lax; Secure`;
+}
+
 function emitEvent(name, details = {}) {
   const payload = {
     event: name,
@@ -99,6 +113,7 @@ function initCtaTracking() {
 }
 
 updateGuide();
+persistLandingAttribution();
 updatePartnerNotice();
 initCtaTracking();
 emitEvent('guide_landing_view');
